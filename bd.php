@@ -1,20 +1,18 @@
 <?php
 function conectar() {
-    $connection = pg_connect("host=localhost port=5432 dbname=datosPoke user=postgres password=1234");
+    $connection = pg_connect("host=localhost port=5432 dbname=Pokedex user=postgres password=1234");
     return $connection;
 }
 
-function insertar(){
-   $connection = pg_connect("host=localhost port=5432 user=postgres password=1234 dbname='Algebra relacional'");
-   $query="insert into libros (titulo, autor, precio, paginas, isbn) values ($1, $2, $3, $4, $5)";
-    $respuesta=pg_prepare($connection, "insertar", $query); 
-    $respuesta2=pg_execute($connection, "insertar", ["título", "autor", 15.00, 200, "123456789"]);
-   //var_dump($connection);
-   pg_close($connection);
+function insertar($nombre, $especie, $altura, $peso, $descripcion) {
+    $connection = conectar();
+    $query = "INSERT INTO pokemon (nombre, especie, altura, peso, descripcion) VALUES ($1, $2, $3, $4, $5)";
+    pg_prepare($connection, "insertar", $query);
+    pg_execute($connection, "insertar", [$nombre, $especie, $altura, $peso, $descripcion]);
+    pg_close($connection);
 }
-insertar();
 
-
+/*
 
 function modificar(){
     $connection = pg_connect("host=localhost port=5432 user=postgres password=1234 dbname='Algebra relacional'");
@@ -49,5 +47,6 @@ function seleccionar(){
 }
     
 seleccionar();
+*/
 
 ?>
