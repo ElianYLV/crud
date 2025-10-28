@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="public/css/bootstrap.min.css">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="public/css/estilo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+      <link rel="icon" type="image/png" href="pokeball.png">
+
+        <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+
+    .bg-gif {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 2px 2px 4px #000;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-download {
+      font-size: 1.5rem;
+      padding: 0.8rem 2rem;
+    }
+  </style>
+</head>
+<body>
+
+    <img src="fondo4.jpg" class="bg-gif" alt="Fondo Pokédex">
+
+  <div class="container text-center mt-5">
+    <h1 class="text-white fw-bold mb-3">Bienvenido a la Pokédex</h1>
+    <div class="card bg-dark bg-opacity-75 text-white mx-auto" style="max-width: 600px;">
+      <div class="card-body">
+        <h2 class="card-title">Pokédex (Generación 9)</h2>
+        <p class="card-text">Explora los Pokémon de Pokémon Escarlata y Púrpura, agrega nuevos registros o elimina los que ya no quieras.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-center mt-5">
+    <button type="submit" class="btn btn-primary btn-lg">Agregar Pokémon</button>
+    <input type="text" class="form-control" id="new" placeholder="Escribe su Numero de Pokédex" required >
+    <input type="text" class="form-control" id="new" placeholder="Escribe su Nombre" required >
+    <input type="text" class="form-control" id="new" placeholder="Escribe su Especie" required >
+    <input type="text" class="form-control" id="new" placeholder="Escribe su Altura" required >
+    <input type="text" class="form-control" id="new" placeholder="Escribe su Peso" required >
+    <input type="text" class="form-control" id="new" placeholder="Escribe su Descripción" required ></textarea>
+  </form>
+</div>
+
+
+
+  <div class="container mt-5">
+    <h3 class="text-white text-center mb-4">Lista de la Pokédex</h3>
+
+    <table class="table table-striped table-dark table-hover text-center">
+      <thead>
+        <tr>
+          <th>N° Pokédex</th>
+          <th>Nombre</th>
+          <th>Especie</th>
+          <th>Altura</th>
+          <th>Peso</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+    </table>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
