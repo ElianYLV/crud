@@ -104,6 +104,7 @@ include 'bd.php';
           <th>Altura</th>
           <th>Peso</th>
           <th>Descripción</th>
+          <th>Acciones</th>
         </tr>
       </thead>
 
@@ -131,6 +132,11 @@ include 'bd.php';
                 data-descripcion='".$fila['descripcion']."'>
                 Editar
             </button>
+            <form action='eliminar.php' method='POST' style='display:inline-block; margin-left:5px;'>
+                <input type='hidden' name='num_pokedex' value='".$fila['num_pokedex']."'>
+                <button type='submit' class='btn btn-danger btn-sm'>Eliminar</button>
+            </form>
+            
         </td>";
         echo "</tr>";
             }
