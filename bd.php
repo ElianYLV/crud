@@ -4,4 +4,50 @@ function conectar() {
     return $connection;
 }
 
+function insertar(){
+   $connection = pg_connect("host=localhost port=5432 user=postgres password=1234 dbname='Algebra relacional'");
+   $query="insert into libros (titulo, autor, precio, paginas, isbn) values ($1, $2, $3, $4, $5)";
+    $respuesta=pg_prepare($connection, "insertar", $query); 
+    $respuesta2=pg_execute($connection, "insertar", ["título", "autor", 15.00, 200, "123456789"]);
+   //var_dump($connection);
+   pg_close($connection);
+}
+insertar();
+
+
+
+function modificar(){
+    $connection = pg_connect("host=localhost port=5432 user=postgres password=1234 dbname='Algebra relacional'");
+    $query="update libros set titulo=$1, autor=$2, precio=$3, paginas=$4 where isbn=$5";
+    $respuesta=pg_prepare($connection, "modificar", $query); 
+    $respuesta2=pg_execute($connection, "modificar", ["título", "autor", 25.00, 190, "123456789"]);
+   //var_dump($connection);
+   pg_close($connection);
+}
+modificar();
+
+
+function eliminar(){
+    $connection = pg_connect("host=localhost port=5432 user=postgres password=1234 dbname='Algebra relacional'");
+    $query="delete from libros where isbn=$1";
+    $respuesta=pg_prepare($connection, "eliminar", $query); 
+    $respuesta2=pg_execute($connection, "eliminar", ["123456789"]);
+    //var_dump($connection);
+    pg_close($connection);
+}
+eliminar();
+
+
+function seleccionar(){
+    $connection = pg_connect("host=localhost port=5432 user=postgres password=1234 dbname='Algebra relacional'");
+    $query="select * from libros";
+    $respuesta=pg_query($connection, $query);
+    while($fila=pg_fetch_assoc($respuesta)){
+        echo "Título: ".$fila['titulo']." | Autor: ".$fila['autor']." | Precio: ".$fila['precio']." | Páginas: ".$fila['paginas']." | ISBN: ".$fila['isbn']."<br>";
+    }
+    pg_close($connection);
+}
+    
+seleccionar();
+
 ?>
