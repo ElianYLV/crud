@@ -112,9 +112,7 @@ include 'bd.php';
         $conexion = conectar();
         $query = "SELECT * FROM pokemon ORDER BY num_pokedex ASC";
         $result = pg_query($conexion, $query);
-        if(!$result){
-            echo "<tr><td colspan='6'>Error con la base de datos.</td></tr>";
-        } else {
+        if($result){
             while ($fila = pg_fetch_assoc($result)) {
                 echo "<tr>";
                 echo "<td>".$fila['num_pokedex']."</td>";
@@ -123,12 +121,63 @@ include 'bd.php';
                 echo "<td>".$fila['altura']."</td>";
                 echo "<td>".$fila['peso']."</td>";
                 echo "<td>".$fila['descripcion']."</td>";
-                echo "</tr>";
+                echo "<td>
+            <button class='btn btn-warning btn-sm editar-btn'
+                data-id='".$fila['num_pokedex']."'
+                data-nombre='".$fila['nombre']."'
+                data-especie='".$fila['especie']."'
+                data-altura='".$fila['altura']."'
+                data-peso='".$fila['peso']."'
+                data-descripcion='".$fila['descripcion']."'>
+                Editar
+            </button>
+        </td>";
+        echo "</tr>";
             }
         }
         pg_close($conexion);
         ?>
       </tbody>
+    </table>
+  </div>
+
+<div class="modal fade" id="editarModal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog">
+<form action="modificar.php" method="POST" class="modal-content bg-dark text-white">
+<div class="modal-header">
+<h5 class="modal-title">Editar Pokémon</h5>
+<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<input type="hidden" name="num_pokedex" id="editar-id">
+<input type="text" name="nombre" id="editar-nombre" class="form-control mb-2" placeholder="Nombre" required>
+<input type="text" name="especie" id="editar-especie" class="form-control mb-2" placeholder="Especie" required>
+<input type="text" name="altura" id="editar-altura" class="form-control mb-2" placeholder="Altura" required>
+<input type="text" name="peso" id="editar-peso" class="form-control mb-2" placeholder="Peso" required>
+<input type="text" name="descripcion" id="editar-descripcion" class="form-control mb-3" placeholder="Descripción" required>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+<button type="submit" class="btn btn-success">Guardar Cambios</button>
+</div>
+</form>
+</div>
+</div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.querySelectorAll('.editar-btn').forEach(button=>{
+button.addEventListener('click', ()=>{
+document.getElementById('editar-id').value = button.dataset.id;
+document.getElementById('editar-nombre').value = button.dataset.nombre;
+document.getElementById('editar-especie').value = button.dataset.especie;
+document.getElementById('editar-altura').value = button.dataset.altura;
+document.getElementById('editar-peso').value = button.dataset.peso;
+document.getElementById('editar-descripcion').value = button.dataset.descripcion;
+new bootstrap.Modal(document.getElementById('editarModal')).show();
+});
+});
+</script>
 </body>
 </html>
