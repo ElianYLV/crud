@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt = pg_prepare($conn, "insertar_poke", $query);
     $exec = pg_execute($conn, "insertar_poke", [$nombre, $especie, $altura, $peso, $descripcion]);
 
-    header("Location: pokedex1.html");
+    header("Location: pokedex1.php");
     exit;
 
     pg_close($conn);
