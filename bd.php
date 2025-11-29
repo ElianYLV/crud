@@ -1,6 +1,6 @@
 <?php
 function conectar() {
-    $connection = pg_connect("host=localhost port=5432 dbname=Pokedex user=postgres password=1234");
+    $connection = pg_connect("host=dpg-d4l48uqli9vc73e32o60-a.oregon-postgres.render.com port=5432 dbname=pokedex_gq5p user=elian password=Q4Hq8pfW5VosD9MNE6LQToypcCYWTlvS");
     return $connection;
 }
 
